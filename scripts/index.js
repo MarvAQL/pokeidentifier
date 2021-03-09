@@ -1,15 +1,18 @@
 var sprite = 'front_default';
-var clicked;
-
+var random = false;
+var url;
 const fetchPokemon = () => {
 
     let id = document.getElementById("pokemonId").value;
     if (!isValidPokemonId(id)){
+        console.log(!isValidPokemonId(id));
         alert("invalid Pokemon ID!");
         return;
     }
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`; // get the api(poke api)
+    if (!random){
+        url = `https://pokeapi.co/api/v2/pokemon/${id}`; // get the api(poke api)
 
+    }
     fetch(url).then( //take the data from the api then do something 
         (result) =>{ 
             return result.json();//returns a file that has the index etc
@@ -33,21 +36,30 @@ const fetchPokemon = () => {
     )
 }
 
-
+function randomFalse(){
+    random = false;
+}
+function normal(){
+    sprite = 'front_default';
+}
 function shinyChance(){
     
-    if(clicked == true){
+    if(sprite === 'front_shiny'){
         sprite = 'front_default';
-        clicked = false;
     }
     else{
         sprite = 'front_shiny';
-        clicked = true;
     }
     
   
     fetchPokemon();
 
+}
+
+function randomize(){
+    random = true;
+    url = `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 898) + 1 }`;
+    fetchPokemon();
 }
 
 
@@ -66,5 +78,5 @@ const displayPokemon = (pokemon) =>{//the display method
 }
 function isValidPokemonId(id) {
     var n = Math.floor(Number(id));
-    return n !== Infinity && String(n) === id && n >= 0;
+    return n < 899 && String(n) === id && n > 0;
 }
