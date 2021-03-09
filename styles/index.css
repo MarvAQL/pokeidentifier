@@ -89,6 +89,20 @@ body {
     color: #666;
     background-color: #f4f4f4;
   }  
+  #randomButton {
+    padding:10px;
+    margin: 10px;
+    border-radius:10px;
+    width: 80%;
+
+    font-family: cursive;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 24px;
+    color: #666;
+    background-color: #f4f4f4;
+  }  
 
   #input {
     width: 30%;
